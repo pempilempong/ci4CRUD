@@ -14,6 +14,7 @@
 <?php endif; ?>
   
 <h1>Student List</h1>
+<a href="/students/create" class="btn btn-primary">Add Students</a>
 <table class = "table">
     <thead>
         <tr>

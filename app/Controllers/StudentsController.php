@@ -13,13 +13,14 @@ class StudentsController extends BaseController
     }
     public function createStudent()
     {
-        return view('students/add');
+        $data['studentsNumber'] = '20000_' .uniqid();
+        return view('students/add', $data);
     }
     public function storeStudent()
     {
         $insertStudent = new StudentsModel();
 
-        if($img = $this->request->getFile(studentProfile)){
+        if($img = $this->request->getFile('studentProfile')){
             if($img->isValid() && !$img->hasMoved()){
                 $imageName = $img->getRandomName();
                 $img->move('uploads/', $imageName);
@@ -40,7 +41,7 @@ class StudentsController extends BaseController
 
         $insertStudent ->insert($data);
 
-        return readirect()->to('/students')->with('success', 'Student added successfully!!');
+        return redirect()->to('/students')->with('success', 'Student added successfully!!');
     
     }
     public function editStudent($id)
